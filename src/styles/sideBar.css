@@ -1,0 +1,27 @@
+.sideBar {
+    width: 400px;
+    height: 700px;
+    background: #eeeef0;
+    overflow: auto;
+    padding: 15px;
+    color:gray;
+}
+
+.sideBarItem {
+    background: white;
+    width: 100%;
+    margin: 0px;
+}
+
+.sideBarItem i{
+    font-size: 118px;
+    margin-left: 8px;
+}
+.sideBarItem img{
+    height: 100px;
+    width: 100px;
+}
+
+.makePurple {
+    color : #46229f;
+}
