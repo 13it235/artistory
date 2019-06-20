@@ -1,28 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import * as serviceWorker from './serviceWorker';
-
 import { Provider } from 'react-redux';
-import { Router, hashHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux'
-
-import routes from './routes'
+import { BrowserRouter, Route } from 'react-router-dom';
+// import routes from './routes'
 import configureStore from './store/configureStore';
 import { loadUrls } from './actions/urls.action';
 
-// new
+//css imports
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 
+import App_Home from './App_Home'
+import App from './App';
+import Token from './token';
+import Login from './login';
+
 const store = configureStore();
-const history = syncHistoryWithStore(hashHistory, store);
+// var createHistory = require("history").createBrowserHistory;
+// const appHistory = createHistory();
 
 store.dispatch(loadUrls());
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router history={history} routes={routes} />
+        {/* <BrowserRouter routes={routes} /> */}
+        <BrowserRouter>
+            <Route path="/" component={App_Home} />
+            <Route path="/login" component={Login} />
+            <Route path="/app" component={App} />
+            <Route path="*" component={Token} />
+        </BrowserRouter>
     </Provider>,
     document.getElementById('root'));
 

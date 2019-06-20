@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './styles/sideBar.css';
-// import PropTypes from 'prop-types';
 
 class SideBar extends Component {
 
@@ -14,24 +13,34 @@ class SideBar extends Component {
     render() {
         return (
             <div className="sideBar">
-                <div className="sideBarItem row">
-                    {
-                        this.state.artist_img !== '' &&
-                        <img className="col-sm-3" src={this.state.artist_img} alt="artist" />
-                    }
-                    {
-                        this.state.artist_img === '' &&
-                        <i className="fa fa-user"></i>
-                    }
-                    <div className="col-sm-9" style={{paddingTop : '10px'}}>
-                        <h5 className="makePurple">BTS</h5>
-                        <div style={{ fontSize: '13px' }}>Genre: K-POP</div>
-                        <div style={{ fontSize: '13px' }}>Popularity: 80%</div>
-                        <div style={{ fontSize: '13px' }}>Followers:
-                             <p className="makePurple">20M</p>
+                {
+                    this.props.artists !== undefined && this.props.artists !== null &&
+                    this.props.artists.map(artist =>
+                        <div className="sideBarItem row" key={artist.id} style={{ paddingTop: '6px' }}>
+                            <div className="col-sm-4">
+                                {
+                                    artist.image !== '' &&
+                                    <img src={artist.image} alt="artist" />
+                                }
+                                {
+                                    artist.image === '' &&
+                                    <i className="fa fa-user"></i>
+                                }
+                            </div>
+                            <div className="col-sm-8" style={{ paddingTop: '5px' }}>
+                                <h5 className="makePurple"
+                                    style={{ marginBottom: '5px' }}>{artist.name}</h5>
+                                <div style={{ fontSize: '13px' }}>Genre: {artist.genre.join(',')}</div>
+                                <div style={{ fontSize: '13px' }}>Popularity: {artist.popularity}%</div>
+                                <div style={{ fontSize: '13px', display: 'flex' }}>Followers:
+                                    <p className="makePurple" style={{ paddingLeft: '3px' }}>
+                                        {artist.followers}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    )
+                }
+
             </div>
         )
     }

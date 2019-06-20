@@ -1,27 +1,31 @@
 .sideBar {
     width: 400px;
     height: 700px;
-    background: #eeeef0;
+    background: #d1d1e7;
     overflow: auto;
-    padding: 15px;
-    color:gray;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: gray;
 }
 
 .sideBarItem {
     background: white;
     width: 100%;
-    margin: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 8px 6px -6px grey;
 }
 
-.sideBarItem i{
-    font-size: 118px;
+.sideBarItem i {
+    font-size: 110px;
     margin-left: 8px;
 }
-.sideBarItem img{
+
+.sideBarItem img {
     height: 100px;
     width: 100px;
 }
 
 .makePurple {
-    color : #46229f;
+    color: #46229f;
 }

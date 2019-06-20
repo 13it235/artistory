@@ -11,14 +11,14 @@ export function searchArtistOnSpotify(searchString, callback) {
         axios({
             method: 'GET',
             url: 'https://api.spotify.com/v1/search?q=' + searchString + '&type=artist',
-            headers: {
-                'Authorization': 'Bearer ' + cookie.load('access_token')
-            }
+            // headers: {
+            //     'Authorization': 'Bearer ' + cookie.load('access_token')
+            // }
         })
             .then((res) => {
                 dispatch(searchArtistOnSpotifySuccess(res.data));
                 if (callback)
-                    callback(response.data);
+                    callback(res.data);
             })
             .catch((err) => {
                 if (callback)
