@@ -1,7 +1,11 @@
-.dashboardContainer{
-    height : auto;
-    width : auto;
+.dashboardContainer {
+    height: 100%;
+    width: 100%;
     background: #d1d1e7;
-    padding: 10px;
-    box-shadow: 0 8px 6px -6px grey;
+}
+
+.artistBanner{
+    height : 400px;
+    width: 100%
+
 }

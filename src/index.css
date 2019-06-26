@@ -25,9 +25,9 @@ code {
 }
 
 .app_content{
-  height: auto;
-  width: auto;
-  padding : 10px;
+  height: 700px;
+  width: 100%;
+  /* padding : 10px; */
 }
 
 .loginContainer{

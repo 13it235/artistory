@@ -1,7 +1,7 @@
 .sideBar {
-    width: 400px;
+    /* width: 400px; */
     height: 700px;
-    background: #d1d1e7;
+    background: #80a2af;
     overflow: auto;
     padding-left: 10px;
     padding-right: 10px;
@@ -13,7 +13,12 @@
     width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
-    box-shadow: 0 8px 6px -6px grey;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.sideBarItem:hover {
+    box-shadow: 0 8px 6px -6px dimgray;
 }
 
 .sideBarItem i {
@@ -27,5 +32,5 @@
 }
 
 .makePurple {
-    color: #46229f;
+    color: #173b7c;
 }

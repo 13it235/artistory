@@ -26,13 +26,6 @@ class Token extends React.Component {
                     case "expires_in":
                         tokenRes.expires_in = first_split[i].split('=')[1]; //60
                         break;
-                    // case "viewtype":
-                    //     tokenRes.viewtype = first_split[i].split('=')[1];
-                    //     break;
-                    // case "session_state":
-                    //     tokenRes.session_state = first_split[i].split('=')[1];
-                    //     cookie.save("session_state", tokenRes.session_state);
-                    //     break;
                     default:
                         break;
                 }
@@ -40,24 +33,15 @@ class Token extends React.Component {
 
             var access_token = tokenRes.access_token;
 
-            if (tokenRes.expires_in) {
-                var int_expires = parseInt(tokenRes.expires_in) - 10;
-
-                cookie.save('access_token', access_token, { maxAge: int_expires });
-
-                setTimeout(() => {
-                    alert('Session expired');
-                    cookie.remove("access_token");
-                    cookie.remove("userinfo")
-                    this.props.history.push('/');
-                }, tokenRes.expires_in);
-            }
             if (access_token) {
                 cookie.save("access_token", access_token);
                 this.props.history.push('/app')
             } else {
                 this.props.history.push('/')
             }
+        }
+        else {
+            this.props.history.push('/')
         }
     };
 

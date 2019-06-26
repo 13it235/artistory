@@ -1,0 +1,17 @@
+.artistContainer {
+    height: 100%;
+    width: 100%;
+    background: #d1d1e7;
+}
+
+.artistBanner {
+    height: inherit;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.artistBanner img {
+    height: 700px;
+    width: 100%;
+}

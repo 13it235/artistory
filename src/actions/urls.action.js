@@ -14,7 +14,6 @@ export function loadUrls() {
             scopes: [
                 'user-read-private',
                 'user-read-email',
-                // 'user-library-modify'
             ]
         }
         return dispatch(loadUrlsSuccess(urls));

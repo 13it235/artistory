@@ -5,7 +5,8 @@ import './styles/header.css';
 const Header = ({searchValue}) => {
     return (
         <div className="header">
-            <input type="search" className="headerSearch" placeholder="&#61442;   Search" 
+            <i className="fa fa-search"></i>
+            <input type="search" className="headerSearch" placeholder="Search" 
             onChange={searchValue}/>
         </div>
     )

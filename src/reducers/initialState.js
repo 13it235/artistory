@@ -1,8 +1,9 @@
 export default {
-    artists : [],
-    albums : [],
-    tracks : [],
-    selectedAlbum : {},
-    trackChosen : {},
-    urls : {}
+    artist: {},
+    artists: [],
+    albums: [],
+    tracks: [],
+    selectedAlbum: {},
+    trackChosen: {},
+    urls: {}
 }
