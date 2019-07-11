@@ -72,19 +72,21 @@ class App extends Component {
       <BrowserRouter>
         <div className="app_container">
           <Header searchValue={(event) => this.searchResults(event.target.value)} />
-          <div className="row" >
+          <div className="row" style={{top : '80px'}}>
             {
               this.state.artists &&
-              <div className="col-sm-3" style={{ padding: '0px' }}>
+              <div className="col-sm-3" style={{ top: '80px', position : 'relative' }}>
                 {/* <Link to={`/${this.state.id}`}>
                   <SideBar artists={this.state.artists} onClickArtist={(event) => { this.selectedArtist(event) }} />
                 </Link> */}
                 <div className="sideBar">
                   {
                     this.state.artists.map(artist => {
-                      return (<Link to={`/app/${artist.id}`} key={artist.id}>
-                        <SideBarItem artist={artist} />
-                      </Link>)
+                      return (
+                        <Link to={`/app/${artist.id}`} key={artist.id}>
+                          <SideBarItem artist={artist} />
+                        </Link>
+                      )
                     }
                     )
                   }

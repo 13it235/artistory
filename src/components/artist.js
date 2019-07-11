@@ -10,7 +10,8 @@ class Artist extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            artist: {}
+            artist: {},
+            id : ''
         }
     }
 
@@ -19,7 +20,8 @@ class Artist extends Component {
             this.props.history.push('/')
         }
         else {
-            if (this.props.match.params.id) {
+            if (this.props.match.params.id && this.state.id !== this.props.match.params.id) {
+                this.setState({id : this.props.match.params.id})
                 this.props.artistActions.getArtistById(this.props.match.params.id, res => {
                     console.log("by id", res);
                     this.setState({ artist: res });
@@ -28,17 +30,34 @@ class Artist extends Component {
         }
     }
 
+    componentDidUpdate() {
+        if (!cookie.load('access_token')) {
+            this.props.history.push('/')
+        }
+        else {
+            if (this.props.match.params.id && this.state.id !== this.props.match.params.id) {
+                this.setState({id : this.props.match.params.id})
+                this.props.artistActions.getArtistById(this.props.match.params.id, res => {
+                    console.log("by id", res);
+                    this.setState({ artist: res });
+                })
+            }
+        }
+    }
     render() {
         return (
             <div className="artistContainer">
                 {
                     this.state.artist !== {} && this.state.artist !== undefined &&
                     this.state.artist &&
-                    <div>
-                        <div className="artistBanner" style={this.state.artist.images ?
-                            { backgroundImage: this.state.artist.images[0].url } : {}}>
-                            {/* <img src={this.state.artist.images !== undefined
+                    <div className="artistBanner" style={this.state.artist.images !== undefined ?
+                        { backgroundImage: `url(${this.state.artist.images[0].url})` } : {}}>
+                        {/* <img src={this.state.artist.images !== undefined
                                 ? this.state.artist.images[0].url : ''} /> */}
+                        <div className="overlayArtist">Artist</div>
+                        <div className="overlayName">{this.state.artist.name}</div>
+                        <div className="content">
+                                Content here
                         </div>
                     </div>
                 }

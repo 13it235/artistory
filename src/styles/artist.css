@@ -5,13 +5,46 @@
 }
 
 .artistBanner {
-    height: inherit;
+    height: 700px;
     width: 100%;
     background-repeat: no-repeat;
     background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top : 100px;
 }
 
 .artistBanner img {
     height: 700px;
     width: 100%;
 }
+
+.artistBanner .overlayArtist{
+    font-size: 22px;
+    color : white;
+    padding-left : 50px;
+    margin : 25px 0px;
+    background: transparent;
+    font-weight: bold;
+}
+
+.artistBanner .overlayName{
+    font-size: 30px;
+    color : white;
+    padding-left : 50px;
+    background: transparent;
+    font-weight: bold;
+    margin-top : 25px;
+    margin-bottom: 72px;
+}
+
+.artistBanner .content {
+    display: block;
+    top: 50px;
+    height: 400px;
+    width: 100%;
+    background: #bed5de;
+}
+
