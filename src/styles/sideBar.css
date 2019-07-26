@@ -1,10 +1,10 @@
 .sideBar {
-    /* width: 400px; */
     height: 700px;
     background: #80a2af;
     overflow: auto;
     padding-left: 10px;
     padding-right: 10px;
+    padding-top : 15px;
     color: gray;
 }
 
@@ -27,9 +27,7 @@
 }
 
 .sideBarItem img {
-    height: 100px;
     width: 100%;
-    padding: 0px 5px;
 }
 
 .makePurple {

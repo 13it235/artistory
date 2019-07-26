@@ -1,5 +1,4 @@
 @import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, cursive;
@@ -7,27 +6,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.row{
-  margin-left : 0px !important;
+.row {
+  margin-left: 0px !important;
   margin-right: 0px !important;
 }
 
-.app_container{
+.app_container {
   height: -webkit-fill-available;
   width: auto;
 }
 
-.app_content{
+.app_content {
   height: 700px;
   width: 100%;
   /* padding : 10px; */
 }
 
-.loginContainer{
-
+.fitSidebar {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
 
-.loginButton{
-  
+a {
+  text-decoration: none !important;
 }
 
+.loginContainer {}
+
+.loginButton {}

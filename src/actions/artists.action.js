@@ -11,12 +11,17 @@ export function getArtistByIdSuccess(artist) {
     return { type: types.GET_ARTIST_BY_ID, artist };
 }
 
+export function getArtistsAlbumsSuccess(albums) {
+    return { type: types.GET_ARTIST_ALBUMS, albums };
+}
+
 /**Actions */
 export function searchArtistOnSpotify(searchString, callback) {
     return function (dispatch, getState) {
+        var URLs = getState().urls
         axios({
             method: 'GET',
-            url: 'https://api.spotify.com/v1/search?q=' + searchString + '&type=artist',
+            url: URLs.baseUrl + URLs.version + 'search?q=' + searchString + '&type=artist',
         })
             .then((res) => {
                 dispatch(searchArtistOnSpotifySuccess(res.data));
@@ -32,13 +37,36 @@ export function searchArtistOnSpotify(searchString, callback) {
 
 export function getArtistById(id, callback) {
     return function (dispatch, getState) {
+        var URLs = getState().urls
+
         axios({
             method: 'GET',
-            url: 'https://api.spotify.com/v1/artists/' + id,
+            url: URLs.baseUrl + URLs.version + 'artists/' + id,
 
         })
             .then((res) => {
-                dispatch(searchArtistOnSpotifySuccess(res.data));
+                dispatch(getArtistByIdSuccess(res.data));
+                if (callback)
+                    callback(res.data);
+            })
+            .catch((err) => {
+                if (callback)
+                    callback(err);
+            })
+    }
+}
+
+export function getArtistsAlbums(id, callback) {
+    return function (dispatch, getState) {
+        var URLs = getState().urls
+
+        axios({
+            method: 'GET',
+            url: URLs.baseUrl + URLs.version + 'artists/' + id + '/albums',
+
+        })
+            .then((res) => {
+                dispatch(getArtistsAlbumsSuccess(res.data));
                 if (callback)
                     callback(res.data);
             })

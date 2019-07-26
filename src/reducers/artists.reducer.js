@@ -7,6 +7,8 @@ export default function artistReducer(state = initialState.artists, action) {
             return action.artists;
         case types.GET_ARTIST_BY_ID:
             return action.artist;
+        case types.GET_ARTIST_ALBUMS:
+            return action.albums;
         default:
             return state;
     }

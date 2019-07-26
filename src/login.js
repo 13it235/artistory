@@ -12,6 +12,7 @@ class Login extends Component {
     }
 
     componentDidMount() {
+        console.log("loading accesstoken", cookie.load('access_token'))
         if (cookie.load('access_token')) {
             this.props.history.push('/app');
         }

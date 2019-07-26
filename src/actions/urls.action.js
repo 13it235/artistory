@@ -14,7 +14,9 @@ export function loadUrls() {
             scopes: [
                 'user-read-private',
                 'user-read-email',
-            ]
+            ],
+            'baseUrl' : 'https://api.spotify.com/',
+            'version' : 'v1/',
         }
         return dispatch(loadUrlsSuccess(urls));
     }

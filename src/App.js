@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import * as artistActions from './actions/artists.action';
 import cookie from 'react-cookie';
 import axios from 'axios';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom';
 import Dashboard from './components/dashboard';
 import Artist from './components/artist';
 
@@ -34,11 +34,12 @@ class App extends Component {
         return response;
       }, function (error) {
         if (error.response.status === 401) {
-          alert('Session expired');
           cookie.remove('access_token');
+          alert('Session expired');
           self.props.history.push('/login')
         }
       })
+      this.props.history.push('/app/dashboard')
     }
   }
 
@@ -61,6 +62,10 @@ class App extends Component {
         }
       })
     }
+    else {
+      this.setState({ artists: [] });
+      this.props.history.push('/app/dashboard')
+    }
   }
 
   selectedArtist(id) {
@@ -72,10 +77,10 @@ class App extends Component {
       <BrowserRouter>
         <div className="app_container">
           <Header searchValue={(event) => this.searchResults(event.target.value)} />
-          <div className="row" style={{top : '80px'}}>
+          <div className="row" style={{ position: 'relative', top: '80px' }}>
             {
-              this.state.artists &&
-              <div className="col-sm-3" style={{ top: '80px', position : 'relative' }}>
+              this.state.artists.length > 0 &&
+              <div className="col-sm-3 fitSidebar">
                 {/* <Link to={`/${this.state.id}`}>
                   <SideBar artists={this.state.artists} onClickArtist={(event) => { this.selectedArtist(event) }} />
                 </Link> */}
@@ -83,7 +88,7 @@ class App extends Component {
                   {
                     this.state.artists.map(artist => {
                       return (
-                        <Link to={`/app/${artist.id}`} key={artist.id}>
+                        <Link to={`/app/artist/${artist.id}`} key={artist.id}>
                           <SideBarItem artist={artist} />
                         </Link>
                       )
@@ -93,8 +98,12 @@ class App extends Component {
                 </div>
               </div>
             }
-            <div className="col-sm-9 app_content">
-              <Route path={`/app/:id`} component={Artist} />
+            <div className={this.state.artists.length === 0 ? "col-sm-12 app_content" : "col-sm-9 app_content"}>
+              <Route path="/app/dashboard" component={Dashboard} />
+              <Route exact path="/">
+                <Redirect to="/app/dashboard" />
+              </Route>
+              <Route path={`/app/artist/:id`} component={Artist} />
             </div>
           </div>
         </div>
