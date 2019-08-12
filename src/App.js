@@ -5,7 +5,6 @@ import SideBarItem from './sideBar';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as artistActions from './actions/artists.action';
-import cookie from 'react-cookie';
 import axios from 'axios';
 import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom';
 import Dashboard from './components/dashboard';
@@ -24,17 +23,17 @@ class App extends Component {
   }
 
   componentDidMount() {
-    if (!cookie.load('access_token')) {
+    if (!localStorage.getItem('access_token')) {
       this.props.history.push('/')
     }
     else {
       var self = this;
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + cookie.load('access_token');
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token');
       axios.interceptors.response.use(function (response) {
         return response;
       }, function (error) {
         if (error.response.status === 401) {
-          cookie.remove('access_token');
+          localStorage.removeItem('access_token');
           alert('Session expired');
           self.props.history.push('/login')
         }
@@ -100,9 +99,9 @@ class App extends Component {
             }
             <div className={this.state.artists.length === 0 ? "col-sm-12 app_content" : "col-sm-9 app_content"}>
               <Route path="/app/dashboard" component={Dashboard} />
-              <Route exact path="/">
+              {/* <Route exact path="/">
                 <Redirect to="/app/dashboard" />
-              </Route>
+              </Route> */}
               <Route path={`/app/artist/:id`} component={Artist} />
             </div>
           </div>

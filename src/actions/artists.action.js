@@ -21,7 +21,7 @@ export function searchArtistOnSpotify(searchString, callback) {
         var URLs = getState().urls
         axios({
             method: 'GET',
-            url: URLs.baseUrl + URLs.version + 'search?q=' + searchString + '&type=artist',
+            url: URLs.baseUrl + URLs.version + 'search?q=' + searchString + '&type=artist'
         })
             .then((res) => {
                 dispatch(searchArtistOnSpotifySuccess(res.data));
@@ -38,11 +38,12 @@ export function searchArtistOnSpotify(searchString, callback) {
 export function getArtistById(id, callback) {
     return function (dispatch, getState) {
         var URLs = getState().urls
-
         axios({
             method: 'GET',
             url: URLs.baseUrl + URLs.version + 'artists/' + id,
-
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('access_token')
+            }
         })
             .then((res) => {
                 dispatch(getArtistByIdSuccess(res.data));
@@ -59,7 +60,6 @@ export function getArtistById(id, callback) {
 export function getArtistsAlbums(id, callback) {
     return function (dispatch, getState) {
         var URLs = getState().urls
-
         axios({
             method: 'GET',
             url: URLs.baseUrl + URLs.version + 'artists/' + id + '/albums',

@@ -2,18 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './styles/header.css';
 
-const Header = ({searchValue}) => {
+const Header = ({ searchValue }) => {
     return (
-        <div className="header">
-            <i className="fa fa-search"></i>
-            <input type="search" className="headerSearch" placeholder="Search" 
-            onChange={searchValue}/>
-        </div>
+        <header className="header">
+            <span>
+                <i className="fa fa-search"></i>
+                <input type="search" className="headerSearch" placeholder="Search"
+                    onChange={searchValue} />
+            </span>
+        </header>
     )
 }
 
 Header.propTypes = {
-    searchValue: PropTypes.func.isRequired
+    searchValue: PropTypes.func
 }
 
 export default Header;

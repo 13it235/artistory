@@ -1,13 +1,9 @@
 import React from 'react';
-import cookie from 'react-cookie';
 
 class Token extends React.Component {
 
     componentWillMount() {
         const token = this.props.location.hash;
-        // console.log("token type", typeof (token));
-        // console.log("token", token);
-
         if (token !== undefined && token !== '') {
             var tokenRes = {
                 access_token: null,
@@ -34,7 +30,7 @@ class Token extends React.Component {
             var access_token = tokenRes.access_token;
 
             if (access_token) {
-                cookie.save("access_token", access_token);
+                localStorage.setItem("access_token", access_token);
                 this.props.history.push('/app')
             } else {
                 this.props.history.push('/')

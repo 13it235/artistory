@@ -4,7 +4,6 @@ import App_Home from './App_Home'
 import App from './App';
 import Token from './token';
 import Login from './login';
-import Dashboard from './components/dashboard';
 
 export const Routes = () => {
     return (

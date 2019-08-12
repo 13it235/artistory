@@ -1,11 +1,10 @@
 import React from 'react';
 import './App.css';
-import cookie from 'react-cookie';
 
 class App_Home extends React.Component {
 
     componentDidMount() {
-        if (cookie.load('access_token')) {
+        if (localStorage.getItem('access_token')) {
             this.props.history.push('/app');
         }
         else {
@@ -14,9 +13,7 @@ class App_Home extends React.Component {
     }
 
     render() {
-        return (
-            <div></div>
-        )
+        return null;
     }
 
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import cookie from 'react-cookie';
 import { connect } from 'react-redux';
 
 class Login extends Component {
@@ -12,8 +11,8 @@ class Login extends Component {
     }
 
     componentDidMount() {
-        console.log("loading accesstoken", cookie.load('access_token'))
-        if (cookie.load('access_token')) {
+        console.log("loading accesstoken", localStorage.getItem('access_token'))
+        if (localStorage.getItem('access_token')) {
             this.props.history.push('/app');
         }
         else {
@@ -41,4 +40,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, null)(Login);
+export default connect(mapStateToProps)(Login);

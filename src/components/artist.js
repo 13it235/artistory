@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import * as artistActions from '../actions/artists.action';
 import * as albumActions from '../actions/album.action';
 import '../styles/artist.css';
-import cookie from 'react-cookie';
 
 class Artist extends Component {
 
@@ -17,6 +16,7 @@ class Artist extends Component {
             albumSongs: [],
             selectedAlbum: ''
         }
+        this.getAlbumTracks = this.getAlbumTracks.bind(this);
     }
 
     componentDidMount() {
@@ -28,7 +28,7 @@ class Artist extends Component {
     }
 
     getArtistById() {
-        if (!cookie.load('access_token')) {
+        if (!localStorage.getItem('access_token')) {
             this.props.history.push('/')
         }
         else {
@@ -68,8 +68,6 @@ class Artist extends Component {
                     this.state.artist &&
                     <div className="artistBanner" style={this.state.artist.images !== undefined ?
                         { backgroundImage: `url(${this.state.artist.images[0].url})` } : {}}>
-                        {/* <img src={this.state.artist.images !== undefined
-                                ? this.state.artist.images[0].url : ''} /> */}
                         <div className="overlayArtist">Artist</div>
                         <div className="overlayName">{this.state.artist.name}</div>
                         <div className="content">
@@ -80,7 +78,8 @@ class Artist extends Component {
                                         this.state.albums.map(album => {
                                             return <div className="gridItem" key={album.id}
                                                 style={album.images !== undefined ?
-                                                    { backgroundImage: `url(${album.images[0].url})` } : {}}>
+                                                    { backgroundImage: `url(${album.images[0].url})` } : {}}
+                                                onClick={() => this.getAlbumTracks(album.id, album.name)}>
                                                 <div className="gridOverlay avoidTextOverflow">
                                                     <div>Album : {album.name}</div>
                                                     <div>Songs : {album.total_tracks}</div>
@@ -92,11 +91,11 @@ class Artist extends Component {
                                 {
                                     this.state.albumSongs.length > 0 &&
                                     <div className="albumDetails">
-                                        <span className="trackHeader">{this.state.selectedAlbum}({this.state.albumSongs.length})</span>
-                                        <div style={{overflow : 'auto'}}>
+                                        <div className="trackHeader">{this.state.selectedAlbum}({this.state.albumSongs.length})</div>
+                                        <div className="trackList_wrapper">
                                             {
-                                                this.state.albumSongs.map(song => {
-                                                    return <div className="albumItem avoidTextOverflow">{song.name}</div>
+                                                this.state.albumSongs.map((song, index) => {
+                                                    return <div key={index} className="albumItem avoidTextOverflow">{song.name}</div>
                                                 }
                                                 )
                                             }
