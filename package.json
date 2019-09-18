@@ -21,7 +21,7 @@
     "redux-immutable-state-invariant": "^2.1.0",
     "redux-logger": "2.8.1",
     "redux-promise-middleware": "4.2.0",
-    "redux-thunk": "2.2.0",
+    "redux-thunk": "2.3.0",
     "superagent": "^5.0.6"
   },
   "scripts": {
